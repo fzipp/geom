@@ -42,6 +42,7 @@ func (m *Mat4) Det() float32 {
 		m[0][1]*m[1][0]*m[2][2]*m[3][3] + m[0][0]*m[1][1]*m[2][2]*m[3][3]
 }
 
+// Mul sets m to the matrix product a*b and returns m.
 func (m *Mat4) Mul(a *Mat4, b *Mat4) *Mat4 {
 	*m = Mat4{
 		{
