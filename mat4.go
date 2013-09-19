@@ -115,14 +115,15 @@ func (m *Mat4) Perspective(fovy, aspect, near, far float32) *Mat4 {
 	return m
 }
 
+/*
 func (m *Mat4) LookAt(eye, center, up Vec3) *Mat4 {
-	/* TODO
 	f := center.Sub(eye).Norm()
 	s := f.Cross(up.Norm())
 	u := s.Cross(f)
-	*/
+	// TODO
 	return m
 }
+*/
 
 // Floats returns a pointer to the matrix elements represented as a flat
 // array of float32s.
