@@ -115,6 +115,34 @@ func TestMat4Perspective(t *testing.T) {
 	}
 }
 
+func TestMat4LookAt(t *testing.T) {
+	tests := []struct {
+		eye, center, up Vec3
+		want            Mat4
+	}{
+		{V3(1, 1, 1), V3(1, 1, 0), V3(0, 1, 0), Mat4{
+			{1, 0, 0, 0},
+			{0, 1, 0, 0},
+			{0, 0, 1, 0},
+			{-1, -1, -1, 1},
+		}},
+		{V3(0, 0, 1), V3(0, 0, -1), V3(0, 1, 0), Mat4{
+			{1, 0, 0, 0},
+			{0, 1, 0, 0},
+			{0, 0, 1, 0},
+			{0, 0, -1, 1},
+		}},
+	}
+	var m Mat4
+	for _, tt := range tests {
+		m.LookAt(tt.eye, tt.center, tt.up)
+		if m != tt.want {
+			t.Errorf("m.LookAt(%s, %s, %s) = %v, want %v",
+				tt.eye, tt.center, tt.up, m, tt.want)
+		}
+	}
+}
+
 func TestMat4Floats(t *testing.T) {
 	m := Mat4{
 		{11, 12, 13, 14},
