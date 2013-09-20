@@ -116,6 +116,8 @@ func (m *Mat4) Perspective(fovy, aspect, near, far float32) *Mat4 {
 	return m
 }
 
+// LookAt sets m to be a viewing matrix given an eye point, a reference
+// point indicating the center of the scene and an up vector, and returns m.
 func (m *Mat4) LookAt(eye, center, up Vec3) *Mat4 {
 	vz := eye.Sub(center).Norm()
 	vx := up.Cross(vz).Norm()
