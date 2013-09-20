@@ -30,6 +30,26 @@ func TestMat4Id(t *testing.T) {
 	}
 }
 
+func TestMat4Det(t *testing.T) {
+	tests := []struct {
+		m    Mat4
+		want float32
+	}{
+		{id, 1},
+		{Mat4{
+			{-3, 2, 6, 5},
+			{4, 1.5, 1, 8},
+			{1, 4, 2, 4},
+			{5.25, 6, -2, 8},
+		}, 348.25},
+	}
+	for _, tt := range tests {
+		if det := tt.m.Det(); det != tt.want {
+			t.Errorf("%v.Det() = %g, want %g", tt.m, det, tt.want)
+		}
+	}
+}
+
 func TestMat4Ortho(t *testing.T) {
 	tests := []struct {
 		l, r, b, t, n, f float32
