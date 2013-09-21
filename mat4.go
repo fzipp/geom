@@ -132,7 +132,8 @@ func (m *Mat4) LookAt(eye, center, up Vec3) *Mat4 {
 }
 
 // Floats returns a pointer to the matrix elements represented as a flat
-// array of float32s.
+// array of float32 numbers in row major ordering. Changing an element value
+// of this array will affect m and vice versa.
 func (m *Mat4) Floats() *[16]float32 {
 	return (*[16]float32)(unsafe.Pointer(m))
 }
