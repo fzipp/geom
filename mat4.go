@@ -9,7 +9,7 @@ import (
 	"unsafe"
 )
 
-// A Mat4 represents a 4x4 matrix.
+// A Mat4 represents a 4x4 matrix. The indices are [row][column].
 type Mat4 [4][4]float32
 
 // id is the 4x4 identity matrix.
@@ -132,7 +132,7 @@ func (m *Mat4) LookAt(eye, center, up Vec3) *Mat4 {
 }
 
 // Floats returns a pointer to the matrix elements represented as a flat
-// array of float32 numbers in row major ordering. Changing an element value
+// array of float32 numbers in row-major order. Changing an element value
 // of this array will affect m and vice versa.
 func (m *Mat4) Floats() *[16]float32 {
 	return (*[16]float32)(unsafe.Pointer(m))
