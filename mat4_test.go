@@ -5,6 +5,7 @@
 package geom
 
 import (
+	"math"
 	"testing"
 )
 
@@ -230,10 +231,10 @@ func TestMat4Mul(t *testing.T) {
 			{5.3, 8.1, 4.4, 2.5},
 			{4.9, -1, 0, 4},
 		}, Mat4{
-			{0.7, -1.24, 31.24, 13.77},
-			{54.92, 72.88, 48.62, 55.92},
-			{-7.21, -17.92, -72.96, -57.53},
-			{47.25, -1.67, 5.34, 29.465},
+			{-75.825, -6.66, 18.63, -20.37},
+			{-47.74, 32.38, -23.48, -53.42},
+			{5.225, -16.07, 56.73, 51.67},
+			{0.69, 29.78, 9.68, 16.8},
 		}},
 	}
 	for _, tt := range tests {
@@ -244,6 +245,48 @@ func TestMat4Mul(t *testing.T) {
 		}
 		if mp != &m {
 			t.Errorf("m.Mul(...) does not return the pointer to m")
+		}
+	}
+}
+
+func TestMat4Rot(t *testing.T) {
+	tests := []struct {
+		a    Mat4
+		rad  float32
+		axis Vec3
+		want Mat4
+	}{
+		{Mat4{
+			{1, 0, 0, 0},
+			{0, 1, 0, 0},
+			{0, 0, 1, 0},
+			{0, 0, 0, 1},
+		}, math.Pi / 4, V3(0, 0, 1), Mat4{
+			{0.7071, 0.7071, 0, 0},
+			{-0.7071, 0.7071, 0, 0},
+			{0, 0, 1, 0},
+			{0, 0, 0, 1},
+		}},
+		{Mat4{
+			{1, 0, 0, 0},
+			{0, 1, 0, 0},
+			{0, 0, 1, 0},
+			{1, 2, 3, 1},
+		}, math.Pi * 0.5, V3(1, 0, 0), Mat4{
+			{1, 0, 0, 0},
+			{0, 0, 1, 0},
+			{0, -1, 0, 0},
+			{1, 2, 3, 1},
+		}},
+	}
+	for _, tt := range tests {
+		var m Mat4
+		mp := m.Rot(&tt.a, tt.rad, tt.axis)
+		if !tt.want.nearEq(&m) {
+			t.Errorf("m.Rot(%v, %g, %s) = %v, want %v", tt.a, tt.rad, tt.axis, m, tt.want)
+		}
+		if mp != &m {
+			t.Errorf("m.Rot(...) does not return the pointer to m")
 		}
 	}
 }
