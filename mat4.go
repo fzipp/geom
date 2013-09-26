@@ -142,6 +142,8 @@ func (m *Mat4) LookAt(eye, center, up Vec3) *Mat4 {
 	return m
 }
 
+// Rot sets m to the rotation of matrix a by the given angle in radians around
+// the given axis, and returns m.
 func (m *Mat4) Rot(a *Mat4, angle float32, axis Vec3) *Mat4 {
 	c := float32(math.Cos(float64(angle)))
 	s := float32(math.Sin(float64(angle)))
