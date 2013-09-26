@@ -24,10 +24,32 @@ func TestMat4Id(t *testing.T) {
 	}
 	mp := m.Id()
 	if m != id {
-		t.Errorf("m.Id() does not set m to be the identity matrix, got instead: %v", m)
+		t.Errorf("m.Id() does not set m to the identity matrix, got instead: %v", m)
 	}
 	if mp != &m {
 		t.Errorf("m.Id() does not return the pointer to m")
+	}
+}
+
+func TestMat4Zero(t *testing.T) {
+	m := Mat4{
+		{11, 12, 13, 14},
+		{21, 22, 23, 24},
+		{31, 32, 33, 34},
+		{41, 42, 43, 44},
+	}
+	id := Mat4{
+		{0, 0, 0, 0},
+		{0, 0, 0, 0},
+		{0, 0, 0, 0},
+		{0, 0, 0, 0},
+	}
+	mp := m.Zero()
+	if m != id {
+		t.Errorf("m.Zero() does not set m to the zero matrix, got instead: %v", m)
+	}
+	if mp != &m {
+		t.Errorf("m.Zero() does not return the pointer to m")
 	}
 }
 
