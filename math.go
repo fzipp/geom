@@ -35,11 +35,11 @@ func nearEq(a, b, ε float32) bool {
 const x = math.Pi / 180
 
 // Deg converts the measurement of an angle from radians to degrees.
-func Deg(rad float64) float64 {
+func Deg(rad float32) float32 {
 	return rad / x
 }
 
 // Rad converts the measurement of an angle from degrees to radians.
-func Rad(deg float64) float64 {
+func Rad(deg float32) float32 {
 	return deg * x
 }
