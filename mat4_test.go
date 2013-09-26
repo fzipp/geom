@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-func TestMatNearEq(t *testing.T) {
+func TestMat4NearEq(t *testing.T) {
 	tests := []struct {
 		a, b Mat4
 		want bool
