@@ -291,6 +291,60 @@ func TestMat4Rot(t *testing.T) {
 	}
 }
 
+func TestMat4Scale(t *testing.T) {
+	tests := []struct {
+		a    Mat4
+		v    Vec3
+		want Mat4
+	}{
+		{Mat4{
+			{3, 4, 1, 0},
+			{8, 3, 2.5, 7},
+			{-2, 2, 1.3, 0},
+			{1, 5.6, 2, -4},
+		}, V3(2, 0.5, -1), Mat4{
+			{6, 8, 2, 0},
+			{4, 1.5, 1.25, 3.5},
+			{2, -2, -1.3, 0},
+			{1, 5.6, 2, -4},
+		}},
+
+		{Mat4{
+			{3, 4, 1, 0},
+			{8, 3, 2.5, 7},
+			{-2, 2, 1.3, 0},
+			{1, 5.6, 2, -4},
+		}, V3Unit, Mat4{
+			{3, 4, 1, 0},
+			{8, 3, 2.5, 7},
+			{-2, 2, 1.3, 0},
+			{1, 5.6, 2, -4},
+		}},
+
+		{Mat4{
+			{3, 4, 1, 0},
+			{8, 3, 2.5, 7},
+			{-2, 2, 1.3, 0},
+			{1, 5.6, 2, -4},
+		}, V3Zero, Mat4{
+			{0, 0, 0, 0},
+			{0, 0, 0, 0},
+			{0, 0, 0, 0},
+			{1, 5.6, 2, -4},
+		}},
+	}
+	for _, tt := range tests {
+		var m Mat4
+		mp := m.Scale(&tt.a, tt.v)
+		if !tt.want.nearEq(&m) {
+			t.Errorf("m.Scale(%v, %s) = %v, want %v", tt.a, tt.v, m, tt.want)
+		}
+		if mp != &m {
+			t.Errorf("m.Scale(...) does not return the pointer to m")
+		}
+	}
+}
+
 func TestMat4T(t *testing.T) {
 	tests := []struct {
 		a, want Mat4
