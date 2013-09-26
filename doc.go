@@ -10,7 +10,7 @@ programming: Vec2, Vec3 and Mat4.
 	var a Mat4
 
 	// Another 4x4 matrix
-	var b := Mat4{
+	b := Mat4{
 		{0, 1, 2.3, 3},
 		{4, 0.5, 6, 7},
 		{8, -9, 10, 11},
