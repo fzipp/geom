@@ -15,13 +15,6 @@ func lerp(a, b, t float32) float32 {
 	return a + (b-a)*t
 }
 
-// det2x2 calculates the determinant of a 2x2 matrix:
-//      |a b|
-//      |c d|
-func det2x2(a, b, c, d float32) float32 {
-	return a*d - b*c
-}
-
 const epsilon = 1e-5
 
 // nearEq compares two floating-point numbers for equality within an
