@@ -1,4 +1,4 @@
 Mat4:
-	Adj, Inv, Rot, Rot{X|Y|Z}, Scale, Translate, Transpose
+	Adj, Inv, Rot{X|Y|Z}, Scale, Translate
 Vec2, Vec3:
 	Clamp, ClampLen, Max, Min, MoveTowards, Transform

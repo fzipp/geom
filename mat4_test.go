@@ -290,3 +290,31 @@ func TestMat4Rot(t *testing.T) {
 		}
 	}
 }
+
+func TestMat4T(t *testing.T) {
+	tests := []struct {
+		a, want Mat4
+	}{
+		{Mat4{
+			{11, 12, 13, 14},
+			{21, 22, 23, 24},
+			{31, 32, 33, 34},
+			{41, 42, 43, 44},
+		}, Mat4{
+			{11, 21, 31, 41},
+			{12, 22, 32, 42},
+			{13, 23, 33, 43},
+			{14, 24, 34, 44},
+		}},
+	}
+	for _, tt := range tests {
+		var m Mat4
+		mp := m.T(&tt.a)
+		if tt.want != m {
+			t.Errorf("%v.T(%v) = %v, want %v", tt.a, m, tt.want)
+		}
+		if mp != &m {
+			t.Errorf("m.T(...) does not return the pointer to m")
+		}
+	}
+}

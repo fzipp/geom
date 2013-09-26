@@ -154,6 +154,17 @@ func (m *Mat4) Rot(a *Mat4, angle float32, axis Vec3) *Mat4 {
 	return m.Mul(a, &b)
 }
 
+// T sets m to the transpose of matrix a and returns m.
+func (m *Mat4) T(a *Mat4) *Mat4 {
+	*m = Mat4{
+		{a[0][0], a[1][0], a[2][0], a[3][0]},
+		{a[0][1], a[1][1], a[2][1], a[3][1]},
+		{a[0][2], a[1][2], a[2][2], a[3][2]},
+		{a[0][3], a[1][3], a[2][3], a[3][3]},
+	}
+	return m
+}
+
 // Floats returns a pointer to the matrix elements represented as a flat
 // array of float32 numbers in row-major order. Changing an element value
 // of this array will affect m and vice versa.
