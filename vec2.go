@@ -74,9 +74,8 @@ func (v Vec2) CrossLen(w Vec2) float32 {
 	return v.X*w.Y - v.Y*w.X
 }
 
-// Scale returns the component-wise multiplication (Hadamard product) of
-// two vectors.
-func (v Vec2) Scale(w Vec2) Vec2 {
+// CompMul returns the component-wise multiplication of two vectors.
+func (v Vec2) CompMul(w Vec2) Vec2 {
 	return Vec2{v.X * w.X, v.Y * w.Y}
 }
 

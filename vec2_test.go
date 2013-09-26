@@ -167,7 +167,7 @@ func TestVec2CrossLen(t *testing.T) {
 	}
 }
 
-func TestVec2Scale(t *testing.T) {
+func TestVec2CompMul(t *testing.T) {
 	tests := []struct {
 		v, w Vec2
 		want Vec2
@@ -180,8 +180,8 @@ func TestVec2Scale(t *testing.T) {
 		{V2(2, 3), V2Zero, V2Zero},
 	}
 	for _, tt := range tests {
-		if x := tt.v.Scale(tt.w); !x.NearEq(tt.want) {
-			t.Errorf("%s.Scale(%s) = %s, want %s", tt.v, tt.w, x, tt.want)
+		if x := tt.v.CompMul(tt.w); !x.NearEq(tt.want) {
+			t.Errorf("%s.CompMul(%s) = %s, want %s", tt.v, tt.w, x, tt.want)
 		}
 	}
 }

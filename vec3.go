@@ -72,9 +72,8 @@ func (v Vec3) Cross(w Vec3) Vec3 {
 	}
 }
 
-// Scale returns the component-wise multiplication (Hadamard product) of
-// two vectors.
-func (v Vec3) Scale(w Vec3) Vec3 {
+// CompMul returns the component-wise multiplication of two vectors.
+func (v Vec3) CompMul(w Vec3) Vec3 {
 	return Vec3{v.X * w.X, v.Y * w.Y, v.Z * w.Z}
 }
 
