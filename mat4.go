@@ -20,9 +20,18 @@ var id = Mat4{
 	{0, 0, 0, 1},
 }
 
+// zero is the 4x4 zero matrix.
+var zero Mat4
+
 // Id sets m to be the identity matrix and returns m.
 func (m *Mat4) Id() *Mat4 {
 	*m = id
+	return m
+}
+
+// Zero sets m to be the zero matrix and returns m.
+func (m *Mat4) Zero() *Mat4 {
+	*m = zero
 	return m
 }
 
