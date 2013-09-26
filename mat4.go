@@ -23,13 +23,13 @@ var id = Mat4{
 // zero is the 4x4 zero matrix.
 var zero Mat4
 
-// Id sets m to be the identity matrix and returns m.
+// Id sets m to the identity matrix and returns m.
 func (m *Mat4) Id() *Mat4 {
 	*m = id
 	return m
 }
 
-// Zero sets m to be the zero matrix and returns m.
+// Zero sets all elements of m to 0 (zero matrix) and returns m.
 func (m *Mat4) Zero() *Mat4 {
 	*m = zero
 	return m
@@ -82,7 +82,7 @@ func (m *Mat4) Mul(a *Mat4, b *Mat4) *Mat4 {
 	return m
 }
 
-// Ortho sets m to be an orthographic projection matrix with the given clipping
+// Ortho sets m to an orthographic projection matrix with the given clipping
 // planes and returns m.
 func (m *Mat4) Ortho(left, right, bottom, top, near, far float32) *Mat4 {
 	dx := left - right
@@ -97,7 +97,7 @@ func (m *Mat4) Ortho(left, right, bottom, top, near, far float32) *Mat4 {
 	return m
 }
 
-// Frustum sets m to be a frustum matrix with the given clipping planes and
+// Frustum sets m to a frustum matrix with the given clipping planes and
 // returns m.
 func (m *Mat4) Frustum(left, right, bottom, top, near, far float32) *Mat4 {
 	dx := right - left
@@ -112,7 +112,9 @@ func (m *Mat4) Frustum(left, right, bottom, top, near, far float32) *Mat4 {
 	return m
 }
 
-// Perspective sets m to be a perspective matrix and returns m.
+// Perspective sets m to a perspective matrix with the given vertical field of
+// view angle (in radians), aspect ratio, near and far bounds of the frustum,
+// and returns m.
 func (m *Mat4) Perspective(fovy, aspect, near, far float32) *Mat4 {
 	f := 1 / float32(math.Tan(float64(fovy/2)))
 	dz := near - far
@@ -125,8 +127,8 @@ func (m *Mat4) Perspective(fovy, aspect, near, far float32) *Mat4 {
 	return m
 }
 
-// LookAt sets m to be a viewing matrix given an eye point, a reference
-// point indicating the center of the scene and an up vector, and returns m.
+// LookAt sets m to a viewing matrix given an eye point, a reference point
+// indicating the center of the scene and an up vector, and returns m.
 func (m *Mat4) LookAt(eye, center, up Vec3) *Mat4 {
 	vz := eye.Sub(center).Norm()
 	vx := up.Cross(vz).Norm()
