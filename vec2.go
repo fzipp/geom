@@ -79,6 +79,11 @@ func (v Vec2) CompMul(w Vec2) Vec2 {
 	return Vec2{v.X * w.X, v.Y * w.Y}
 }
 
+// CompDiv returns the component-wise division of two vectors.
+func (v Vec2) CompDiv(w Vec2) Vec2 {
+	return Vec2{v.X / w.X, v.Y / w.Y}
+}
+
 // SqDist returns the square of the euclidian distance between two vectors.
 func (v Vec2) SqDist(w Vec2) float32 {
 	return v.Sub(w).SqLen()

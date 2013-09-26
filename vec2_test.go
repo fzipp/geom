@@ -186,6 +186,22 @@ func TestVec2CompMul(t *testing.T) {
 	}
 }
 
+func TestVec2CompDiv(t *testing.T) {
+	tests := []struct {
+		v, w Vec2
+		want Vec2
+	}{
+		{V2(4, 1), V2(2, 5), V2(2, 0.2)},
+		{V2(1.2, 2.3), V2(-2, 0.5), V2(-0.6, 4.6)},
+		{V2(2, 3), V2Unit, V2(2, 3)},
+	}
+	for _, tt := range tests {
+		if x := tt.v.CompDiv(tt.w); !x.NearEq(tt.want) {
+			t.Errorf("%s.CompDiv(%s) = %s, want %s", tt.v, tt.w, x, tt.want)
+		}
+	}
+}
+
 func TestVec2SqDist(t *testing.T) {
 	tests := []struct {
 		v, w Vec2

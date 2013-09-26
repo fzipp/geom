@@ -77,6 +77,11 @@ func (v Vec3) CompMul(w Vec3) Vec3 {
 	return Vec3{v.X * w.X, v.Y * w.Y, v.Z * w.Z}
 }
 
+// CompDiv returns the component-wise division of two vectors.
+func (v Vec3) CompDiv(w Vec3) Vec3 {
+	return Vec3{v.X / w.X, v.Y / w.Y, v.Z / w.Z}
+}
+
 // SqDist returns the square of the euclidian distance between two vectors.
 func (v Vec3) SqDist(w Vec3) float32 {
 	return v.Sub(w).SqLen()
