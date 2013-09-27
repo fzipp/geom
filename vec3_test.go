@@ -133,3 +133,113 @@ func TestVec3Neg(t *testing.T) {
 		}
 	}
 }
+
+func TestVec3Dot(t *testing.T) {
+	tests := []struct {
+		v, w Vec3
+		want float32
+	}{
+		{V3(2, -3, 4), V3(-4, 2, 1), -10},
+		{V3(4, 8, 3), V3(0.5, 1.25, -4.5), -1.5},
+		{V3(12.5, 9.25, -2.5), V3Zero, 0},
+		{V3UnitX, V3UnitY, 0},
+		{V3(4, 5, 2), V3Unit, 11},
+	}
+	for _, tt := range tests {
+		if x := tt.v.Dot(tt.w); x != tt.want {
+			t.Errorf("%s.Dot(%s) = %g, want %g", tt.v, tt.w, x, tt.want)
+		}
+	}
+}
+
+func TestVec3Cross(t *testing.T) {
+	tests := []struct {
+		v, w, want Vec3
+	}{
+		{V3(2, -3, 4), V3(-4, 2, 1), V3(-11, -18, -8)},
+		{V3(4, 8, 3), V3(0.5, 1.25, -4.5), V3(-39.75, 19.5, 1)},
+		{V3(12.5, 9.25, -2.5), V3Zero, V3Zero},
+		{V3(3.5, -4, 9.6), V3(1, 0.5, 2), V3(-12.8, 2.6, 5.75)},
+		{V3UnitX, V3UnitY, V3UnitZ},
+		{V3(4, 5, 3), V3Unit, V3(2, -1, -1)},
+	}
+	for _, tt := range tests {
+		if x := tt.v.Cross(tt.w); !x.NearEq(tt.want) {
+			t.Errorf("%s.Cross(%s) = %s, want %s", tt.v, tt.w, x, tt.want)
+		}
+	}
+}
+
+func TestVec3CompMul(t *testing.T) {
+	tests := []struct {
+		v, w Vec3
+		want Vec3
+	}{
+		{V3(4, 1, 8), V3(2, 5, 3), V3(8, 5, 24)},
+		{V3(1.2, 2.3, -2.1), V3(-2, 0.5, 3), V3(-2.4, 1.15, -6.3)},
+		{V3(2, 3, 4), V3Unit, V3(2, 3, 4)},
+		{V3(2, 3, 4), V3UnitX, V3(2, 0, 0)},
+		{V3(2, 3, 4), V3UnitY, V3(0, 3, 0)},
+		{V3(2, 3, 4), V3UnitZ, V3(0, 0, 4)},
+		{V3(2, 3, 4), V3Zero, V3Zero},
+	}
+	for _, tt := range tests {
+		if x := tt.v.CompMul(tt.w); !x.NearEq(tt.want) {
+			t.Errorf("%s.CompMul(%s) = %s, want %s", tt.v, tt.w, x, tt.want)
+		}
+	}
+}
+
+func TestVec3CompDiv(t *testing.T) {
+	tests := []struct {
+		v, w Vec3
+		want Vec3
+	}{
+		{V3(4, 1, 8), V3(2, 5, -4), V3(2, 0.2, -2)},
+		{V3(1.2, 2.3, -2.7), V3(-2, 0.5, 3), V3(-0.6, 4.6, -0.9)},
+		{V3(2, 3, 4), V3Unit, V3(2, 3, 4)},
+	}
+	for _, tt := range tests {
+		if x := tt.v.CompDiv(tt.w); !x.NearEq(tt.want) {
+			t.Errorf("%s.CompDiv(%s) = %s, want %s", tt.v, tt.w, x, tt.want)
+		}
+	}
+}
+
+func TestVec3SqDist(t *testing.T) {
+	tests := []struct {
+		v, w Vec3
+		want float32
+	}{
+		{V3Zero, V3Zero, 0.0},
+		{V3Zero, V3UnitX, 1.0},
+		{V3UnitX, V3UnitY, 2.0},
+		{V3(-2.3, 1.1, -8.4), V3(-2.3, 1.1, -8.4), 0.0},
+		{V3(2, 1, 5), V3(2, 3, 1), 20},
+		{V3(0.5, 2, 2.5), V3(1.5, 2.5, 3), 1.5},
+	}
+	for _, tt := range tests {
+		if x := tt.v.SqDist(tt.w); !nearEq(x, tt.want, epsilon) {
+			t.Errorf("%s.SqDist(%s) = %g, want %g", tt.v, tt.w, x, tt.want)
+		}
+	}
+}
+
+func TestVec3Dist(t *testing.T) {
+	tests := []struct {
+		v, w Vec3
+		want float32
+	}{
+		{V3Zero, V3Zero, 0.0},
+		{V3Zero, V3UnitX, 1.0},
+		{V3UnitX, V3UnitY, 1.4142135},
+		{V3(-2.3, 1.1, -8.4), V3(-2.3, 1.1, -8.4), 0.0},
+		{V3(2, 1, 5), V3(2, 3, 1), 4.472136},
+		{V3(0.5, 2, 2.5), V3(1.5, 2.5, 3), 1.2247449},
+	}
+	for _, tt := range tests {
+		if x := tt.v.Dist(tt.w); !nearEq(x, tt.want, epsilon) {
+			t.Errorf("%s.Dist(%s) = %g, want %g", tt.v, tt.w, x, tt.want)
+		}
+	}
+}
