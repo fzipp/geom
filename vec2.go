@@ -136,8 +136,9 @@ func (v Vec2) Z(z float32) Vec3 {
 	return Vec3{v.X, v.Y, z}
 }
 
-// NearEq returns whether v and w are almost equal.
-// This relation is not transitive in general.
+// NearEq returns whether v and w are approximately equal. This relation is not
+// transitive in general. The tolerance for the floating-point components is
+// ±1e-5.
 func (v Vec2) NearEq(w Vec2) bool {
 	return nearEq(v.X, w.X, epsilon) && nearEq(v.Y, w.Y, epsilon)
 }

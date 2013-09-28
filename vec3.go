@@ -118,8 +118,9 @@ func (v Vec3) Lerp(w Vec3, t float32) Vec3 {
 	return Vec3{lerp(v.X, w.X, t), lerp(v.Y, w.Y, t), lerp(v.Z, w.Z, t)}
 }
 
-// NearEq returns whether v and w are almost equal.
-// This relation is not transitive in general.
+// NearEq returns whether v and w are approximately equal. This relation is not
+// transitive in general. The tolerance for the floating-point components is
+// ±1e-5.
 func (v Vec3) NearEq(w Vec3) bool {
 	return nearEq(v.X, w.X, epsilon) &&
 		nearEq(v.Y, w.Y, epsilon) &&
