@@ -6,6 +6,7 @@ package geom
 
 import (
 	"math"
+	"strconv"
 )
 
 // lerp returns the linear interpolation between a and b by amount t.
@@ -22,6 +23,11 @@ const epsilon = 1e-5
 // This relation is not transitive, except for ε=0.
 func nearEq(a, b, ε float32) bool {
 	return float32(math.Abs(float64(a-b))) <= ε
+}
+
+// str converts a float32 to a string in "%g" format.
+func str(f float32) string {
+	return strconv.FormatFloat(float64(f), 'g', -1, 32)
 }
 
 // x is the radians<->degrees conversion factor.

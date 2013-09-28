@@ -5,7 +5,6 @@
 package geom
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -145,5 +144,5 @@ func (v Vec2) NearEq(w Vec2) bool {
 
 // String returns a string representation of v like "(3.25, -1.5)".
 func (v Vec2) String() string {
-	return fmt.Sprintf("(%g, %g)", v.X, v.Y)
+	return "(" + str(v.X) + ", " + str(v.Y) + ")"
 }
