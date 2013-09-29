@@ -454,3 +454,33 @@ func TestMat4T(t *testing.T) {
 		}
 	}
 }
+
+func TestMat4Translate(t *testing.T) {
+	tests := []struct {
+		a    Mat4
+		v    Vec3
+		want Mat4
+	}{
+		{Mat4{
+			{1, 0, 0, 0},
+			{0, 1, 0, 0},
+			{0, 0, 1, 0},
+			{3, 9, 4, 1},
+		}, V3(2, 0.5, -1), Mat4{
+			{1, 0, 0, 0},
+			{0, 1, 0, 0},
+			{0, 0, 1, 0},
+			{5, 9.5, 3, 1},
+		}},
+	}
+	for _, tt := range tests {
+		var m Mat4
+		mp := m.Translate(&tt.a, tt.v)
+		if !tt.want.nearEq(&m) {
+			t.Errorf("m.Translate(%v, %s) = %v, want %v", tt.a, tt.v, m, tt.want)
+		}
+		if mp != &m {
+			t.Errorf("m.Translate(...) does not return the pointer to m")
+		}
+	}
+}

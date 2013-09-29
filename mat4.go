@@ -181,6 +181,23 @@ func (m *Mat4) Scale(a *Mat4, v Vec3) *Mat4 {
 	return m
 }
 
+// Translate sets m to the translation of matrix a by the vector v and
+// returns m.
+func (m *Mat4) Translate(a *Mat4, v Vec3) *Mat4 {
+	*m = Mat4{
+		{a[0][0], a[0][1], a[0][2], a[0][3]},
+		{a[1][0], a[1][1], a[1][2], a[1][3]},
+		{a[2][0], a[2][1], a[2][2], a[2][3]},
+		{
+			a[0][0]*v.X + a[1][0]*v.Y + a[2][0]*v.Z + a[3][0],
+			a[0][1]*v.X + a[1][1]*v.Y + a[2][1]*v.Z + a[3][1],
+			a[0][2]*v.X + a[1][2]*v.Y + a[2][2]*v.Z + a[3][2],
+			a[0][3]*v.X + a[1][3]*v.Y + a[2][3]*v.Z + a[3][3],
+		},
+	}
+	return m
+}
+
 // Floats returns a pointer to the matrix elements represented as a flat
 // array of float32 numbers in row-major order. Changing an element value
 // of this array will affect m and vice versa.
