@@ -119,7 +119,7 @@ func (v Vec3) Lerp(w Vec3, t float32) Vec3 {
 }
 
 // Min returns a vector with each component set to the lesser value
-// of each corresponding component pair of v and w
+// of the corresponding component pair of v and w.
 func (v Vec3) Min(w Vec3) Vec3 {
 	return Vec3{
 		float32(math.Min(float64(v.X), float64(w.X))),
@@ -129,7 +129,7 @@ func (v Vec3) Min(w Vec3) Vec3 {
 }
 
 // Max returns a vector with each component set to the greater value
-// of each corresponding component pair of v and w
+// of the corresponding component pair of v and w.
 func (v Vec3) Max(w Vec3) Vec3 {
 	return Vec3{
 		float32(math.Max(float64(v.X), float64(w.X))),

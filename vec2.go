@@ -132,7 +132,7 @@ func (v Vec2) Angle() float32 {
 }
 
 // Min returns a vector with each component set to the lesser value
-// of each corresponding component pair of v and w
+// of the corresponding component pair of v and w.
 func (v Vec2) Min(w Vec2) Vec2 {
 	return Vec2{
 		float32(math.Min(float64(v.X), float64(w.X))),
@@ -141,7 +141,7 @@ func (v Vec2) Min(w Vec2) Vec2 {
 }
 
 // Max returns a vector with each component set to the greater value
-// of each corresponding component pair of v and w
+// of the corresponding component pair of v and w.
 func (v Vec2) Max(w Vec2) Vec2 {
 	return Vec2{
 		float32(math.Max(float64(v.X), float64(w.X))),
