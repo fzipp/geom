@@ -118,6 +118,26 @@ func (v Vec3) Lerp(w Vec3, t float32) Vec3 {
 	return Vec3{lerp(v.X, w.X, t), lerp(v.Y, w.Y, t), lerp(v.Z, w.Z, t)}
 }
 
+// Min returns a vector with each component set to the lesser value
+// of each corresponding component pair of v and w
+func (v Vec3) Min(w Vec3) Vec3 {
+	return Vec3{
+		float32(math.Min(float64(v.X), float64(w.X))),
+		float32(math.Min(float64(v.Y), float64(w.Y))),
+		float32(math.Min(float64(v.Z), float64(w.Z))),
+	}
+}
+
+// Max returns a vector with each component set to the greater value
+// of each corresponding component pair of v and w
+func (v Vec3) Max(w Vec3) Vec3 {
+	return Vec3{
+		float32(math.Max(float64(v.X), float64(w.X))),
+		float32(math.Max(float64(v.Y), float64(w.Y))),
+		float32(math.Max(float64(v.Z), float64(w.Z))),
+	}
+}
+
 // NearEq returns whether v and w are approximately equal. This relation is not
 // transitive in general. The tolerance for the floating-point components is
 // ±1e-5.

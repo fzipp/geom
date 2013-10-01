@@ -334,6 +334,25 @@ func TestVec2Angle(t *testing.T) {
 	}
 }
 
+func TestVec2MinMax(t *testing.T) {
+	tests := []struct {
+		v, w, min, max Vec2
+	}{
+		{V2(2, 1), V2(4, 3), V2(2, 1), V2(4, 3)},
+		{V2(2, 1), V2(4, -3), V2(2, -3), V2(4, 1)},
+		{V2(5, 3.2), V2(3.2, 1.4), V2(3.2, 1.4), V2(5, 3.2)},
+		{V2(0, 6), V2(2, 3), V2(0, 3), V2(2, 6)},
+	}
+	for _, tt := range tests {
+		if x := tt.v.Min(tt.w); !x.NearEq(tt.min) {
+			t.Errorf("%s.Min(%s) = %s, want %s", tt.v, tt.w, x, tt.min)
+		}
+		if x := tt.v.Max(tt.w); !x.NearEq(tt.max) {
+			t.Errorf("%s.Max(%s) = %s, want %s", tt.v, tt.w, x, tt.max)
+		}
+	}
+}
+
 func TestVec2Z(t *testing.T) {
 	tests := []struct {
 		v    Vec2

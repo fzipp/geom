@@ -243,3 +243,22 @@ func TestVec3Dist(t *testing.T) {
 		}
 	}
 }
+
+func TestVec3MinMax(t *testing.T) {
+	tests := []struct {
+		v, w, min, max Vec3
+	}{
+		{V3(2, 1, -4.3), V3(4, 3, 9.9), V3(2, 1, -4.3), V3(4, 3, 9.9)},
+		{V3(2, 1, 8), V3(4, -3, -1), V3(2, -3, -1), V3(4, 1, 8)},
+		{V3(5, 3.2, 0), V3(3.2, 1.4, 11), V3(3.2, 1.4, 0), V3(5, 3.2, 11)},
+		{V3(0, 6, 321.6), V3(2, 3, 4), V3(0, 3, 4), V3(2, 6, 321.6)},
+	}
+	for _, tt := range tests {
+		if x := tt.v.Min(tt.w); !x.NearEq(tt.min) {
+			t.Errorf("%s.Min(%s) = %s, want %s", tt.v, tt.w, x, tt.min)
+		}
+		if x := tt.v.Max(tt.w); !x.NearEq(tt.max) {
+			t.Errorf("%s.Max(%s) = %s, want %s", tt.v, tt.w, x, tt.max)
+		}
+	}
+}
