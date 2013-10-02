@@ -244,6 +244,83 @@ func TestVec3Dist(t *testing.T) {
 	}
 }
 
+func TestVec3Len(t *testing.T) {
+	tests := []struct {
+		v    Vec3
+		want float32
+	}{
+		{V3Zero, 0.0},
+		{V3Unit, 1.732050},
+		{V3UnitX, 1.0},
+		{V3UnitY, 1.0},
+		{V3UnitZ, 1.0},
+		{V3(-2.3, 1.1, 4.5), 5.17204},
+		{V3(2, 1, 5), 5.477226},
+		{V3(0.5, 2, -1), 2.291288},
+	}
+	for _, tt := range tests {
+		if x := tt.v.Len(); !nearEq(x, tt.want, epsilon) {
+			t.Errorf("%s.Len() = %g, want %g", tt.v, x, tt.want)
+		}
+	}
+}
+
+func TestVec3Norm(t *testing.T) {
+	tests := []struct {
+		v, want Vec3
+	}{
+		{V3UnitX, V3UnitX},
+		{V3UnitY, V3UnitY},
+		{V3UnitZ, V3UnitZ},
+		{V3Unit, V3(0.57735026, 0.57735026, 0.57735026)},
+		{V3(2, 4, 1), V3(0.43643576, 0.8728715, 0.21821788)},
+		{V3(0.0, -2.3, 0.0), V3(0.0, -1.0, 0.0)},
+		{V3(0.0, 0.0, 3.9), V3(0.0, 0.0, 1.0)},
+		{V3(6.0, 0.0, 0.0), V3(1.0, 0.0, 0.0)},
+		{V3(-2.5, 3.0, -2.0), V3(-0.5698029, 0.68376344, -0.45584232)},
+	}
+	for _, tt := range tests {
+		if x := tt.v.Norm(); !x.NearEq(tt.want) {
+			t.Errorf("%s.Norm() = %s, want %s", tt.v, x, tt.want)
+		}
+	}
+}
+
+func TestVec3Reflect(t *testing.T) {
+	tests := []struct {
+		v, n, want Vec3
+	}{
+		{V3UnitX, V3UnitY, V3(1, 0, 0)},
+		{V3Unit, V3UnitY, V3(1, -1, 1)},
+		{V3(2, 3, 1), V3UnitY, V3(2, -3, 1)},
+		{V3(-1.5, -3.6, 1.2), V3UnitY, V3(-1.5, 3.6, 1.2)},
+		{V3(1, 0.5, 2), V3Unit.Norm(), V3(-1.3333333, -1.8333333, -0.33333325)},
+	}
+	for _, tt := range tests {
+		if x := tt.v.Reflect(tt.n); !x.NearEq(tt.want) {
+			t.Errorf("%s.Reflect(%s) = %s, want %s", tt.v, tt.n, x, tt.want)
+		}
+	}
+}
+
+func TestVec3Lerp(t *testing.T) {
+	tests := []struct {
+		v, w Vec3
+		t    float32
+		want Vec3
+	}{
+		{V3Zero, V3UnitX, 0.0, V3Zero},
+		{V3Zero, V3UnitX, 0.25, V3(0.25, 0, 0)},
+		{V3Zero, V3UnitX, 1.0, V3UnitX},
+		{V3(2, 1, 4), V3(4, 3, 8), 0.5, V3(3, 2, 6)},
+	}
+	for _, tt := range tests {
+		if x := tt.v.Lerp(tt.w, tt.t); !x.NearEq(tt.want) {
+			t.Errorf("%s.Lerp(%s, %g) = %s, want %s", tt.v, tt.w, tt.t, x, tt.want)
+		}
+	}
+}
+
 func TestVec3MinMax(t *testing.T) {
 	tests := []struct {
 		v, w, min, max Vec3
