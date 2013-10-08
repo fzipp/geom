@@ -328,7 +328,7 @@ func TestVec2Angle(t *testing.T) {
 		{V2(1, -1), math.Pi * 7 / 4},
 	}
 	for _, tt := range tests {
-		if x := tt.v.Angle(); x != tt.want {
+		if x := tt.v.angle(); x != tt.want {
 			t.Errorf("%s.Angle() = %g, want %g", tt.v, x, tt.want)
 		}
 	}

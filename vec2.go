@@ -121,9 +121,9 @@ func (v Vec2) Lerp(w Vec2, t float32) Vec2 {
 	return Vec2{lerp(v.X, w.X, t), lerp(v.Y, w.Y, t)}
 }
 
-// Angle returns the angle (counterclockwise) of vector v with the x axis in
+// angle returns the angle (counterclockwise) of vector v with the x axis in
 // radians. The result is in the interval [0,2π).
-func (v Vec2) Angle() float32 {
+func (v Vec2) angle() float32 {
 	a := math.Atan2(float64(v.Y), float64(v.X))
 	if a < 0 {
 		a += 2 * math.Pi

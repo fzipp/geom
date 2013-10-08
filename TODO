@@ -1,10 +1,4 @@
 Mat4:
 	- Adj, Inv, CompMul
-	- maybe: RotX, RotY, RotZ
-Vec2:
-	- better API for Angle?
-	- maybe: Cross
-Vec3:
-	- Angle
 Vec2, Vec3:
-	- Clamp, ClampLen, MoveTowards, Transform, Refract
+	- Angle, Clamp, ClampLen, MoveTowards, Transform, Refract
