@@ -205,13 +205,13 @@ func (m *Mat4) Floats() *[16]float32 {
 	return (*[16]float32)(unsafe.Pointer(m))
 }
 
-// nearEq returns whether m1 and m2 are approximately equal. This relation is
+// nearEq returns whether m and m2 are approximately equal. This relation is
 // not transitive in general. The tolerance for the floating-point components
 // is ±1e-5.
-func (m1 *Mat4) nearEq(m2 *Mat4) bool {
+func (m *Mat4) nearEq(m2 *Mat4) bool {
 	for i := 0; i < 4; i++ {
 		for j := 0; j < 4; j++ {
-			if !nearEq(m1[i][j], m2[i][j], epsilon) {
+			if !nearEq(m[i][j], m2[i][j], epsilon) {
 				return false
 			}
 		}
