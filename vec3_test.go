@@ -5,6 +5,7 @@
 package geom
 
 import (
+	"math"
 	"testing"
 )
 
@@ -336,6 +337,28 @@ func TestVec3MinMax(t *testing.T) {
 		}
 		if x := tt.v.Max(tt.w); !x.NearEq(tt.max) {
 			t.Errorf("%s.Max(%s) = %s, want %s", tt.v, tt.w, x, tt.max)
+		}
+	}
+}
+
+func TestVec3Transform(t *testing.T) {
+	var rot, trans, scale Mat4
+	rot.Id().Rot(&rot, math.Pi/2, V3UnitZ)
+	trans.Id().Translate(&trans, V3(2.5, 3, -1))
+	scale.Id().Scale(&scale, V3(2, 3, -4))
+
+	tests := []struct {
+		v    Vec3
+		m    *Mat4
+		want Vec3
+	}{
+		{V3(1, 0, 2), &rot, V3(0, 1, 2)},
+		{V3(1, 2, 3), &trans, V3(3.5, 5, 2)},
+		{V3(1.5, -3, -1), &scale, V3(3, -9, 4)},
+	}
+	for _, tt := range tests {
+		if x := tt.v.Transform(tt.m); !x.NearEq(tt.want) {
+			t.Errorf("%s.Transform(%v) = %s, want %s", tt.v, *tt.m, x, tt.want)
 		}
 	}
 }

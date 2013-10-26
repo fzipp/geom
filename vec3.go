@@ -138,6 +138,15 @@ func (v Vec3) Max(w Vec3) Vec3 {
 	}
 }
 
+// Transform transforms vector v with 4x4 matrix m.
+func (v Vec3) Transform(m *Mat4) Vec3 {
+	return Vec3{
+		m[0][0]*v.X + m[1][0]*v.Y + m[2][0]*v.Z + m[3][0],
+		m[0][1]*v.X + m[1][1]*v.Y + m[2][1]*v.Z + m[3][1],
+		m[0][2]*v.X + m[1][2]*v.Y + m[2][2]*v.Z + m[3][2],
+	}
+}
+
 // NearEq returns whether v and w are approximately equal. This relation is not
 // transitive in general. The tolerance for the floating-point components is
 // ±1e-5.

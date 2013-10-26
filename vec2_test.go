@@ -353,6 +353,28 @@ func TestVec2MinMax(t *testing.T) {
 	}
 }
 
+func TestVec2Transform(t *testing.T) {
+	var rot, trans, scale Mat4
+	rot.Id().Rot(&rot, math.Pi/2, V3UnitZ)
+	trans.Id().Translate(&trans, V3(2.5, 3, 0))
+	scale.Id().Scale(&scale, V3(2, 3, 0))
+
+	tests := []struct {
+		v    Vec2
+		m    *Mat4
+		want Vec2
+	}{
+		{V2(1, 0), &rot, V2(0, 1)},
+		{V2(1, 2), &trans, V2(3.5, 5)},
+		{V2(1.5, -3), &scale, V2(3, -9)},
+	}
+	for _, tt := range tests {
+		if x := tt.v.Transform(tt.m); !x.NearEq(tt.want) {
+			t.Errorf("%s.Transform(%v) = %s, want %s", tt.v, *tt.m, x, tt.want)
+		}
+	}
+}
+
 func TestVec2Z(t *testing.T) {
 	tests := []struct {
 		v    Vec2

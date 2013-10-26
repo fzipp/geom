@@ -149,6 +149,14 @@ func (v Vec2) Max(w Vec2) Vec2 {
 	}
 }
 
+// Transform transforms vector v with 4x4 matrix m.
+func (v Vec2) Transform(m *Mat4) Vec2 {
+	return Vec2{
+		m[0][0]*v.X + m[1][0]*v.Y + m[3][0],
+		m[0][1]*v.X + m[1][1]*v.Y + m[3][1],
+	}
+}
+
 // Z returns a Vec3 based on v with the additional coordinate z.
 func (v Vec2) Z(z float32) Vec3 {
 	return Vec3{v.X, v.Y, z}

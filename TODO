@@ -1,4 +1,4 @@
 Mat4:
 	- Adj, Inv, CompMul
 Vec2, Vec3:
-	- Angle, Clamp, ClampLen, MoveTowards, Transform, Refract
+	- Angle, Clamp, ClampLen, MoveTowards, Refract
