@@ -355,9 +355,9 @@ func TestVec2MinMax(t *testing.T) {
 
 func TestVec2Transform(t *testing.T) {
 	var rot, trans, scale Mat4
-	rot.Id().Rot(&rot, math.Pi/2, V3UnitZ)
-	trans.Id().Translate(&trans, V3(2.5, 3, 0))
-	scale.Id().Scale(&scale, V3(2, 3, 0))
+	rot.ID().Rot(&rot, math.Pi/2, V3UnitZ)
+	trans.ID().Translate(&trans, V3(2.5, 3, 0))
+	scale.ID().Scale(&scale, V3(2, 3, 0))
 
 	tests := []struct {
 		v    Vec2

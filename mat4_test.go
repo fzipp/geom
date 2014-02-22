@@ -69,7 +69,7 @@ func TestMat4NearEq(t *testing.T) {
 		}
 	}
 }
-func TestMat4Id(t *testing.T) {
+func TestMat4ID(t *testing.T) {
 	m := Mat4{
 		{11, 12, 13, 14},
 		{21, 22, 23, 24},
@@ -82,12 +82,12 @@ func TestMat4Id(t *testing.T) {
 		{0, 0, 1, 0},
 		{0, 0, 0, 1},
 	}
-	mp := m.Id()
+	mp := m.ID()
 	if m != id {
-		t.Errorf("m.Id() does not set m to the identity matrix, got instead: %v", m)
+		t.Errorf("m.ID() does not set m to the identity matrix, got instead: %v", m)
 	}
 	if mp != &m {
-		t.Errorf("m.Id() does not return the pointer to m")
+		t.Errorf("m.ID() does not return the pointer to m")
 	}
 }
 

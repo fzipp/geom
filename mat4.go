@@ -23,8 +23,8 @@ var id = Mat4{
 // zero is the 4x4 zero matrix.
 var zero Mat4
 
-// Id sets m to the identity matrix and returns m.
-func (m *Mat4) Id() *Mat4 {
+// ID sets m to the identity matrix and returns m.
+func (m *Mat4) ID() *Mat4 {
 	*m = id
 	return m
 }
