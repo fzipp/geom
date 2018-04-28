@@ -34,4 +34,4 @@ Using matrices:
 	// Multiply a and b, store the result in a.
 	a.Mul(&a, &b)
 */
-package geom
+package geom // import "github.com/fzipp/geom"
