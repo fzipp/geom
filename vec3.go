@@ -9,7 +9,7 @@ import (
 )
 
 // A Vec3 represents a vector with coordinates X, Y and Z in 3-dimensional
-// euclidian space.
+// euclidean space.
 type Vec3 struct {
 	X, Y, Z float32
 }
@@ -81,22 +81,22 @@ func (v Vec3) CompDiv(w Vec3) Vec3 {
 	return Vec3{v.X / w.X, v.Y / w.Y, v.Z / w.Z}
 }
 
-// SqDist returns the square of the euclidian distance between two vectors.
+// SqDist returns the square of the euclidean distance between two vectors.
 func (v Vec3) SqDist(w Vec3) float32 {
 	return v.Sub(w).SqLen()
 }
 
-// Dist returns the euclidian distance between two vectors.
+// Dist returns the euclidean distance between two vectors.
 func (v Vec3) Dist(w Vec3) float32 {
 	return v.Sub(w).Len()
 }
 
-// SqLen returns the square of the length (euclidian norm) of a vector.
+// SqLen returns the square of the length (euclidean norm) of a vector.
 func (v Vec3) SqLen() float32 {
 	return v.Dot(v)
 }
 
-// Len returns the length (euclidian norm) of a vector.
+// Len returns the length (euclidean norm) of a vector.
 func (v Vec3) Len() float32 {
 	return float32(math.Sqrt(float64(v.SqLen())))
 }

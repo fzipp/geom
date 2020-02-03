@@ -9,7 +9,7 @@ import (
 )
 
 // A Vec2 represents a vector with coordinates X and Y in 2-dimensional
-// euclidian space.
+// euclidean space.
 type Vec2 struct {
 	X, Y float32
 }
@@ -67,7 +67,7 @@ func (v Vec2) Dot(w Vec2) float32 {
 }
 
 // CrossLen returns the length that the cross product of v and w would have
-// in 3-dimensional euclidian space. This is effectively the Z component
+// in 3-dimensional euclidean space. This is effectively the Z component
 // of the 3D cross product vector.
 func (v Vec2) CrossLen(w Vec2) float32 {
 	return v.X*w.Y - v.Y*w.X
@@ -83,22 +83,22 @@ func (v Vec2) CompDiv(w Vec2) Vec2 {
 	return Vec2{v.X / w.X, v.Y / w.Y}
 }
 
-// SqDist returns the square of the euclidian distance between two vectors.
+// SqDist returns the square of the euclidean distance between two vectors.
 func (v Vec2) SqDist(w Vec2) float32 {
 	return v.Sub(w).SqLen()
 }
 
-// Dist returns the euclidian distance between two vectors.
+// Dist returns the euclidean distance between two vectors.
 func (v Vec2) Dist(w Vec2) float32 {
 	return v.Sub(w).Len()
 }
 
-// SqLen returns the square of the length (euclidian norm) of a vector.
+// SqLen returns the square of the length (euclidean norm) of a vector.
 func (v Vec2) SqLen() float32 {
 	return v.Dot(v)
 }
 
-// Len returns the length (euclidian norm) of a vector.
+// Len returns the length (euclidean norm) of a vector.
 func (v Vec2) Len() float32 {
 	return float32(math.Sqrt(float64(v.SqLen())))
 }
