@@ -26,8 +26,8 @@ func RectSized(pos Vec2, size Size) Rectangle {
 
 // Contains reports whether the rectangle contains point pt.
 func (r Rectangle) Contains(pt Vec2) bool {
-	return (pt.X >= r.Min.X) && (pt.X <= r.Max.X) &&
-		(pt.Y >= r.Min.Y) && (pt.Y <= r.Max.Y)
+	return (r.Min.X <= pt.X && pt.X <= r.Max.X) &&
+		(r.Min.Y <= pt.Y && pt.Y <= r.Max.Y)
 }
 
 // Size returns the dimensions (width and height) of the rectangle.
