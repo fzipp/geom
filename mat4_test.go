@@ -69,6 +69,7 @@ func TestMat4NearEq(t *testing.T) {
 		}
 	}
 }
+
 func TestMat4ID(t *testing.T) {
 	m := Mat4{
 		{11, 12, 13, 14},

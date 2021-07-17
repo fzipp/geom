@@ -288,6 +288,7 @@ func BenchmarkVec2Transform(b *testing.B) {
 	}
 	_ = r
 }
+
 func BenchmarkVec3Add(b *testing.B) {
 	var r Vec3
 	v := V3(1, 2, 3)

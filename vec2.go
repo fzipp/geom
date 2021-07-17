@@ -4,9 +4,7 @@
 
 package geom
 
-import (
-	"math"
-)
+import "math"
 
 // A Vec2 represents a vector with coordinates X and Y in 2-dimensional
 // euclidean space.

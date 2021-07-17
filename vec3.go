@@ -4,9 +4,7 @@
 
 package geom
 
-import (
-	"math"
-)
+import "math"
 
 // A Vec3 represents a vector with coordinates X, Y and Z in 3-dimensional
 // euclidean space.

@@ -1,8 +1,6 @@
 package geom
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestDegRad(t *testing.T) {
 	tests := []struct {
