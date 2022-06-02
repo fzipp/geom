@@ -257,7 +257,7 @@ func TestMat4LookAt(t *testing.T) {
 	var m Mat4
 	for _, tt := range tests {
 		m.LookAt(tt.eye, tt.center, tt.up)
-		if m != tt.want {
+		if !tt.want.nearEq(&m) {
 			t.Errorf("m.LookAt(%s, %s, %s) = %v, want %v",
 				tt.eye, tt.center, tt.up, m, tt.want)
 		}
