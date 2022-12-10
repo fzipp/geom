@@ -2,4 +2,4 @@ Package geom provides vector and matrix types suitable for OpenGL
 programming in Go: Vec2, Vec3 and Mat4. 
 
 Documentation:
-  http://godoc.org/github.com/fzipp/geom
+  https://pkg.go.dev/github.com/fzipp/geom
