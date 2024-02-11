@@ -120,9 +120,9 @@ func (v Vec3) Lerp(w Vec3, t float32) Vec3 {
 // of the corresponding component pair of v and w.
 func (v Vec3) Min(w Vec3) Vec3 {
 	return Vec3{
-		float32(math.Min(float64(v.X), float64(w.X))),
-		float32(math.Min(float64(v.Y), float64(w.Y))),
-		float32(math.Min(float64(v.Z), float64(w.Z))),
+		min(v.X, w.X),
+		min(v.Y, w.Y),
+		min(v.Z, w.Z),
 	}
 }
 
@@ -130,9 +130,9 @@ func (v Vec3) Min(w Vec3) Vec3 {
 // of the corresponding component pair of v and w.
 func (v Vec3) Max(w Vec3) Vec3 {
 	return Vec3{
-		float32(math.Max(float64(v.X), float64(w.X))),
-		float32(math.Max(float64(v.Y), float64(w.Y))),
-		float32(math.Max(float64(v.Z), float64(w.Z))),
+		max(v.X, w.X),
+		max(v.Y, w.Y),
+		max(v.Z, w.Z),
 	}
 }
 

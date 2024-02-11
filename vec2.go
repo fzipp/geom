@@ -132,19 +132,13 @@ func (v Vec2) angle() float32 {
 // Min returns a vector with each component set to the lesser value
 // of the corresponding component pair of v and w.
 func (v Vec2) Min(w Vec2) Vec2 {
-	return Vec2{
-		float32(math.Min(float64(v.X), float64(w.X))),
-		float32(math.Min(float64(v.Y), float64(w.Y))),
-	}
+	return Vec2{min(v.X, w.X), min(v.Y, w.Y)}
 }
 
 // Max returns a vector with each component set to the greater value
 // of the corresponding component pair of v and w.
 func (v Vec2) Max(w Vec2) Vec2 {
-	return Vec2{
-		float32(math.Max(float64(v.X), float64(w.X))),
-		float32(math.Max(float64(v.Y), float64(w.Y))),
-	}
+	return Vec2{max(v.X, w.X), max(v.Y, w.Y)}
 }
 
 // Transform transforms vector v with 4x4 matrix m.
