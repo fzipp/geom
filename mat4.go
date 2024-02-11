@@ -209,8 +209,8 @@ func (m *Mat4) Floats() *[16]float32 {
 // not transitive in general. The tolerance for the floating-point components
 // is ±1e-5.
 func (m *Mat4) nearEq(m2 *Mat4) bool {
-	for i := 0; i < 4; i++ {
-		for j := 0; j < 4; j++ {
+	for i := range 4 {
+		for j := range 4 {
 			if !nearEq(m[i][j], m2[i][j], epsilon) {
 				return false
 			}
